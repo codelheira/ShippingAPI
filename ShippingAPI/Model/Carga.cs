@@ -22,8 +22,14 @@ namespace ShippingAPI.Model
         public decimal Comprimento { get; set; }
         [Column("data_saida")]
         public DateTime DataSaida { get; set; }
+        [Column("data_entrega")]
+        public DateTime? DataEntrega { get; set; }
         [Column("valor_carga")]
         public decimal ValorCarga { get; set; }
+        [Column("destino")]
+        public string Origem { get; set; }
+        [Column("origem")]
+        public string Destino { get; set; }
 
         [Column("id_veiculo")]
         public int IdVeiculo { get; set; }

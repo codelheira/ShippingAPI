@@ -17,8 +17,8 @@ namespace ShippingAPI.Utils
         /// </summary>
         /// <param name="entity">Veiculo</param>
         /// <returns></returns>
-        public static dynamic ToDTO(this Veiculo entity) =>  new
-        { 
+        public static dynamic ToDTO(this Veiculo entity) => new
+        {
             id = entity.Id,
             valor_cubico = entity.ValorCubico,
             nome_modelo = entity.NomeModelo,
@@ -54,9 +54,40 @@ namespace ShippingAPI.Utils
             id = entity.Id,
             responsavel = entity.Responsavel,
             data_saida = entity.DataSaida,
+            altura = entity.Altura,
+            largura = entity.Largura,
+            comprimento = entity.Comprimento,
+            data_entrega = entity.DataEntrega,
             valor = entity.ValorCarga,
-            veiculo = entity.Veiculo.ToDTO(),
-            status = entity.Status.ToDTO()
+            origem = entity.Origem,
+            destino = entity.Destino,
+            veiculo = entity.Veiculo.NomeModelo,
+            tipo_veiculo = entity.Veiculo.TipoVeiculo.Tipo,
+            status = entity.Status.Status,
         };
+        /// <summary>
+        /// Transforma uma lista de entidade em uma DTO dinamica de paginação
+        /// </summary>
+        /// <param name="entity">Carga</param>
+        /// <returns></returns>
+        public static dynamic ToDTO(this IEnumerable<Carga> entity)
+        {
+            return new
+            {
+                hasNext = false,
+                items = entity.Select(x => new
+                {
+                    id = x.Id,
+                    responsavel = x.Responsavel,
+                    data_saida = x.DataSaida,
+                    valor = x.ValorCarga,
+                    origem = x.Origem,
+                    destino = x.Destino,
+                    veiculo = x.Veiculo.NomeModelo,
+                    tipo_veiculo = x.Veiculo.TipoVeiculo.Tipo,
+                    status = x.Status.Status,
+                })
+            };
+        }
     }
 }

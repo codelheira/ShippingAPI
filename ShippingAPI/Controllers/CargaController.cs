@@ -56,9 +56,8 @@ namespace ShippingAPI.Controllers
         {
             try
             {
-                var cargas = _cargaService.FindAll()
-                                          .Select(x => x.ToDTO());
-                return Ok(cargas);
+                var cargas = _cargaService.FindAll();
+                return Ok(cargas.ToDTO());
             }
             catch (Exception ex)
             {
@@ -115,6 +114,7 @@ namespace ShippingAPI.Controllers
                 _ = carga ?? throw new Exception("ERRO: Carga não localizada!");
 
                 carga.IdStatusCarga = (int)StatusCargaEnum.ENTREGUE;
+                carga.DataEntrega = DateTime.Now;
                 _cargaService.Update(carga);
                 return NoContent();
             }
