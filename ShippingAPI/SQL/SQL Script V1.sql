@@ -38,7 +38,6 @@ CREATE TABLE shipping.dbo.carga (
 	destino varchar(100) COLLATE Latin1_General_CI_AS NOT NULL,
 	data_entrega datetime DEFAULT NULL NULL,
 	CONSTRAINT carga_PK PRIMARY KEY (id),
-	CONSTRAINT carga_UN UNIQUE (id_veiculo),
 	CONSTRAINT carga_FK FOREIGN KEY (id_veiculo) REFERENCES shipping.dbo.veiculo(id),
 	CONSTRAINT carga_FK2 FOREIGN KEY (id_status_carga) REFERENCES shipping.dbo.status_carga(id)
 );
