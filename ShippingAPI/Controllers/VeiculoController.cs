@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ShippingAPI.Model;
@@ -13,6 +14,7 @@ namespace ShippingAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("Policy")]
     public class VeiculoController : Controller
     {
         private readonly IVeiculoService<Veiculo> _veiculoService;
