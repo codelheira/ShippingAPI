@@ -19,7 +19,7 @@ namespace ShippingAPI.Model
         [Column("nome_modelo")]
         public string NomeModelo { get; set; }
         [Column("valor_mcubico")]
-        public Decimal ValorCubico { get; set; }
+        public decimal ValorCubico { get; set; }
 
         [Column("id_tipo_veiculo")]
         public int IdTipoVeiculo { get; set; }
@@ -31,7 +31,7 @@ namespace ShippingAPI.Model
             builder.Entity<Carga>()
                       .HasOne(d => d.Veiculo)
                       .WithMany(s => s.Cargas)
-                      .HasForeignKey(d => d.IdStatusCarga)
+                      .HasForeignKey(d => d.IdVeiculo)
                       .IsRequired();
         }
     }
